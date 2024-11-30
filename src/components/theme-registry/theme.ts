@@ -14,17 +14,29 @@ export const getTheme = (mode: "light" | "dark"): ThemeOptions => ({
     mode, // Chế độ light hoặc dark
     text: {
       primary: mode === "dark" ? "#ffffff" : "#011A27", // Màu chữ chính
-      secondary: mode === "dark" ? "#cccccc" : "#F0810F", // Màu chữ phụ
+      secondary: mode === "dark" ? "#cccccc" : "#011A27", // Màu chữ phụ
     },
     background: {
       default: mode === "dark" ? "#121212" : "#ffffff", // Màu nền chính
-      paper: mode === "dark" ? "#1e1e1e" : "#063852", // Màu nền phụ
+      paper: mode === "dark" ? "#1e1e1e" : "#B38867", // Màu nền phụ
     },
+    // primary: {
+    //   main: "#1995AD", // Đặt màu chính cho primary (có thể dùng nếu cần)
+    // },
+
   },
   typography: {
     fontFamily: roboto.style.fontFamily, // Gán font Roboto
   },
   components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: mode === "dark" ? "#1e1e1e" : "#B38867", // Sử dụng màu nền phụ
+          color: mode === "dark" ? "#1e1e1e" : "#011A27",
+        },
+      },
+    },
     MuiAlert: {
       styleOverrides: {
         root: ({ ownerState }: any) => ({
