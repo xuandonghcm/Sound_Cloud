@@ -1,22 +1,18 @@
 'use client'
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
+
+import {
+  styled, alpha, AppBar, Box, Toolbar, IconButton, Typography, InputBase, MenuItem, Menu,
+  Avatar, FormControlLabel, FormGroup, Switch, Container
+} from '@mui/material';
+
 import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import NightlifeOutlinedIcon from '@mui/icons-material/NightlifeOutlined';
 import LyricsOutlinedIcon from '@mui/icons-material/LyricsOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-import { Avatar, FormControlLabel, FormGroup, Switch } from '@mui/material';
-import { Link as MuiLink } from '@mui/material';
+
 import Link from 'next/link';
 import { ThemeContext } from '../theme-registry/theme.registry';
 
@@ -56,13 +52,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '20ch',
+      width: '400px',
     },
   },
 }));
 
 const pages = ['Playlists', 'Likes', 'Upload'];
-export default function PrimarySearchAppBar() {
+export default function HeaderAppBar() {
   const { toggleTheme, mode } = React.useContext(ThemeContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -95,24 +91,21 @@ export default function PrimarySearchAppBar() {
       padding: 0,
       transform: 'translateX(6px)',
       '&.Mui-checked': {
-        color: '#DDBC95',
+        color: theme.palette.background.default,
         transform: 'translateX(22px)',
         '& .MuiSwitch-thumb:before': {
           backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-            '#DDBC95',
+            theme.palette.text.primary,
           )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
         },
         '& + .MuiSwitch-track': {
           opacity: 1,
-          backgroundColor: '#aab4be',
-          ...theme.applyStyles('dark', {
-            backgroundColor: '#DDBC95',
-          }),
+          backgroundColor: theme.palette.text.primary,
         },
       },
     },
     '& .MuiSwitch-thumb': {
-      backgroundColor: '#001e3c',
+      // backgroundColor: theme.palette.mode === 'dark' ? "#F1F1F2" : "#1E1F26",
       width: 32,
       height: 32,
       '&::before': {
@@ -125,20 +118,14 @@ export default function PrimarySearchAppBar() {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-          '#DDBC95',
+          'theme.palette.background.paper',
         )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
       },
-      ...theme.applyStyles('dark', {
-        backgroundColor: '#003892',
-      }),
     },
     '& .MuiSwitch-track': {
       opacity: 1,
-      backgroundColor: '#DDBC95',
+      backgroundColor: 'theme.palette.background.paper',
       borderRadius: 20 / 2,
-      ...theme.applyStyles('dark', {
-        backgroundColor: '#8796A5',
-      }),
     },
   }));
   const menuId = 'primary-search-account-menu';
@@ -222,26 +209,54 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
-      <MenuItem >
-        <MuiLink component={Link} underline="none" href='/playlist' sx={{ display: "flex", alignItems: "center" }}>
-          <LyricsOutlinedIcon sx={{ marginRight: '10px' }} />
+      <MenuItem sx={{
+        display: "flex", alignItems: "center", "> a": {
+          color: 'inherit',
+          textDecoration: "unset"
+        }
+      }}>
+        <Link href='/playlist'>
+          <LyricsOutlinedIcon sx={{
+            marginRight: '10px', "> a": {
+              color: 'inherit',
+              textDecoration: "unset"
+            }
+          }} />
           Playlists
-        </MuiLink>
+        </Link>
       </MenuItem>
-      <MenuItem>
-        <MuiLink component={Link} underline="none" href='/likes' sx={{ display: "flex", alignItems: "center" }}>
+      <MenuItem sx={{
+        display: "flex", alignItems: "center", "> a": {
+          color: 'inherit',
+          textDecoration: "unset"
+        }
+      }}>
+        <Link href='/likes' >
           <FavoriteBorderOutlinedIcon sx={{ marginRight: '10px' }} />
           Likes
-        </MuiLink>
+        </Link>
       </MenuItem>
-      <MenuItem>
-        <MuiLink component={Link} underline="none" href='/upload' sx={{ display: "flex", alignItems: "center" }}>
+      <MenuItem sx={{
+        display: "flex", alignItems: "center", "> a": {
+          color: 'inherit',
+          textDecoration: "unset"
+        }
+      }}>
+        <Link href='/upload' >
           <CloudUploadOutlinedIcon sx={{ marginRight: '10px' }} />
           Upload
-        </MuiLink>
+        </Link>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen} sx={{ display: "flex", alignItems: "center" }}>
-        <Avatar alt="Thanh xuan" src="/static/images/avatar/2.jpg" sx={{ marginRight: '10px' }} />
+        <Avatar alt="" src="" sx={{
+          color: "text.secondary",
+          borderColor: 'text.secondary',
+          borderStyle: 'solid',
+          backgroundColor: 'background.paper', // Màu nền
+          '&:hover': {
+            backgroundColor: '#C0AB84', // Màu khi hover
+          },
+        }} > <Typography>TX</Typography></Avatar>
         Profile
       </MenuItem>
     </Menu>
@@ -249,82 +264,101 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <MuiLink component={Link} underline="none" href='/'>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-            >
-              <NightlifeOutlinedIcon />
-            </IconButton>
-          </MuiLink>
-          <MuiLink component={Link} underline="none" href='/'>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ display: { xs: 'none', sm: 'block' } }}
-            >
-              SoundCloud
-            </Typography>
-          </MuiLink>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-          <Box sx={{ flexGrow: 1 }} />
-          {/* right menu */}
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', textAlign: 'center' }} >
-
-            <Typography sx={{ minWidth: 100 }}><MuiLink component={Link} underline="none" href='/playlist'>Playlists</MuiLink></Typography>
-            <MuiLink component={Link} underline="none" href='/likes' >Likes</MuiLink>
-            <MuiLink component={Link} underline="none" href='/upload'><Typography sx={{ minWidth: 100 }}>Upload</Typography></MuiLink>
-            <FormGroup>
-              <FormControlLabel
-                control={<MaterialUISwitch sx={{ m: 1 }} checked={mode === "dark"} onChange={toggleTheme} />}
-                label={mode === "dark" ? "" : ""}
+      <AppBar position="static" sx={{ backgroundColor: 'background.paper' }}>
+        <Container >
+          <Toolbar sx={{
+            color: 'text.primary', // Màu chữ tự động thay đổi theo theme
+            "> a": {
+              color: 'inherit',
+              textDecoration: 'none',
+            },
+          }}
+          >
+            <Link href='/'>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+              >
+                <NightlifeOutlinedIcon />
+              </IconButton>
+            </Link>
+            <Link href='/'>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ display: { xs: 'none', sm: 'block' } }}
+              >
+                SoundCloud
+              </Typography>
+            </Link>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
               />
-            </FormGroup>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
+            </Search>
+            <Box sx={{ flexGrow: 1 }} />
+            {/* right menu */}
+            <Box sx={{
+              display: { xs: 'none', md: 'flex' },
+              alignItems: 'center', textAlign: 'center',
+              "> a": {
+                color: 'inherit',
+                textDecoration: "unset"
+              }
+            }} >
 
-            >
-              <Avatar alt="Thanh xuan" src="" sx={{
-                backgroundColor: '#DDBC95', // Màu nền
-                '&:hover': {
-                  backgroundColor: '#C0AB84', // Màu khi hover
-                },
-              }} />
-            </IconButton>
-          </Box>
-          {/* right menu mobie */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
+              <Link href='/playlist'><Typography sx={{ minWidth: 100 }}>Playlists</Typography></Link>
+              <Link href='/likes' ><Typography sx={{ minWidth: 100 }}>Likes</Typography></Link>
+              <Link href='/upload'><Typography sx={{ minWidth: 100 }}>Upload</Typography></Link>
+              <FormGroup>
+                <FormControlLabel
+                  control={<MaterialUISwitch sx={{ m: 1 }} checked={mode === "dark"} onChange={toggleTheme} />}
+                  label={mode === "dark" ? "" : ""}
+                />
+              </FormGroup>
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+
+              >
+                <Avatar alt="" src="" sx={{
+                  color: "text.secondary",
+                  borderColor: 'text.secondary',
+                  borderStyle: 'solid',
+                  backgroundColor: 'background.paper', // Màu nền
+                  '&:hover': {
+                    backgroundColor: '#C0AB84', // Màu khi hover
+                  },
+                }} >TX</Avatar>
+              </IconButton>
+            </Box>
+            {/* right menu mobie */}
+            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </Container>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}

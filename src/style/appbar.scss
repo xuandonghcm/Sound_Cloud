@@ -1,0 +1,10 @@
+.custome-link a,
+.custome-menu-item-mobile a {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+.custome-menu-item-mobile {
+    display: flex;
+    align-items: center;
+}

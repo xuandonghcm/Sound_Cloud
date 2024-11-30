@@ -1,4 +1,5 @@
-import PrimarySearchAppBar from '@/components/layout/appbar';
+
+import HeaderAppBar from '@/components/layout/appbar';
 import ThemeRegistry from '@/components/theme-registry/theme.registry';
 
 
@@ -8,7 +9,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <ThemeRegistry>
-          <PrimarySearchAppBar />
+          <HeaderAppBar />
           {children}
         </ThemeRegistry>
       </body>
