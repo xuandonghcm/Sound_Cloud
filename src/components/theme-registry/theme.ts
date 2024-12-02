@@ -18,12 +18,12 @@ export const getTheme = (mode: "light" | "dark"): ThemeOptions => ({
     },
     background: {
       default: mode === "dark" ? "#1E1F26" : "#F1F1F2", // Màu nền chính
-      paper: mode === "dark" ? "#283655" : "#6fb98f", // Màu nền phụ
+      paper: mode === "dark" ? "#283655" : "#F1F1F2", // Màu nền phụ
     },
 
-    // primary: {
-    //   main: "#6fb98f", // Đặt màu chính cho primary (có thể dùng nếu cần)
-    // },
+    info: {
+      main: mode === "dark" ? "#283655" : "#6fb98f", // Đặt màu chính cho primary (có thể dùng nếu cần)
+    },
 
   },
   typography: {
@@ -33,7 +33,7 @@ export const getTheme = (mode: "light" | "dark"): ThemeOptions => ({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: mode === "dark" ? "#283655" : "#6fb98f", // Sử dụng màu nền phụ
+          backgroundColor: mode === "dark" ? "#1E1F26" : "#F1F1F2", // Sử dụng màu nền phụ
           color: mode === "dark" ? "#1e1e1e" : "#011A27",
         },
       },

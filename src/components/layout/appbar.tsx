@@ -15,6 +15,7 @@ import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 
 import Link from 'next/link';
 import { ThemeContext } from '../theme-registry/theme.registry';
+import { useRouter } from 'next/navigation';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -59,6 +60,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const pages = ['Playlists', 'Likes', 'Upload'];
 export default function HeaderAppBar() {
+  const router = useRouter();
   const { toggleTheme, mode } = React.useContext(ThemeContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -139,6 +141,7 @@ export default function HeaderAppBar() {
         paper: {
           elevation: 0,
           sx: {
+            backgroundColor: 'info.main',
             overflow: 'visible',
             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
             mt: 1.5,
@@ -156,7 +159,7 @@ export default function HeaderAppBar() {
               right: 14,
               width: 10,
               height: 10,
-              bgcolor: 'background.paper',
+              bgcolor: 'background.info',
               transform: 'translateY(-50%) rotate(45deg)',
               zIndex: 0,
             },
@@ -175,6 +178,7 @@ export default function HeaderAppBar() {
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
+
       anchorEl={mobileMoreAnchorEl}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
@@ -182,6 +186,7 @@ export default function HeaderAppBar() {
         paper: {
           elevation: 0,
           sx: {
+            backgroundColor: 'info.main',
             overflow: 'visible',
             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
             mt: 1.5,
@@ -199,7 +204,7 @@ export default function HeaderAppBar() {
               right: 14,
               width: 10,
               height: 10,
-              bgcolor: 'background.paper',
+              bgcolor: 'background.info',
               transform: 'translateY(-50%) rotate(45deg)',
               zIndex: 0,
             },
@@ -252,7 +257,7 @@ export default function HeaderAppBar() {
           color: "text.secondary",
           borderColor: 'text.secondary',
           borderStyle: 'solid',
-          backgroundColor: 'background.paper', // Màu nền
+          backgroundColor: 'info.main', // Màu nền
           '&:hover': {
             backgroundColor: '#C0AB84', // Màu khi hover
           },
@@ -264,7 +269,7 @@ export default function HeaderAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: 'background.paper' }}>
+      <AppBar position="static" sx={{ backgroundColor: 'info.main' }}>
         <Container >
           <Toolbar sx={{
             color: 'text.primary', // Màu chữ tự động thay đổi theo theme
@@ -280,6 +285,7 @@ export default function HeaderAppBar() {
                 edge="start"
                 color="inherit"
                 aria-label="open drawer"
+                onClick={() => router.push('/')}
               >
                 <NightlifeOutlinedIcon />
               </IconButton>
@@ -337,7 +343,7 @@ export default function HeaderAppBar() {
                   color: "text.secondary",
                   borderColor: 'text.secondary',
                   borderStyle: 'solid',
-                  backgroundColor: 'background.paper', // Màu nền
+                  backgroundColor: 'info.main', // Màu nền
                   '&:hover': {
                     backgroundColor: '#C0AB84', // Màu khi hover
                   },
