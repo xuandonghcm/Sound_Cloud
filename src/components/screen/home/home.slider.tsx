@@ -1,67 +1,106 @@
 'use client'
 import React from "react";
-import Container from "@mui/material/Container";
-import { Box, Link, Typography } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-
+import { Box, Link, Typography, Divider, Button } from "@mui/material";
+import Slider, { Settings } from "react-slick";
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 export default function HomeSlider() {
-    const slides = [
-        {
-            id: 1,
-            title: "Slide 1",
-            image: "https://via.placeholder.com/800x400",
-            link: "https://example.com",
-        },
-        {
-            id: 2,
-            title: "Slide 2",
-            image: "https://via.placeholder.com/800x400",
-            link: "https://example.com",
-        },
-        {
-            id: 3,
-            title: "Slide 3",
-            image: "https://via.placeholder.com/800x400",
-            link: "https://example.com",
-        },
-    ];
+    const NextArrow = (props: any) => {
+        return (
+            <Button variant="outlined"
+                onClick={props.onClick}
+                sx={{
+                    position: "absolute",
+                    right: 0,
+                    top: "50%",
+                    zIndex: 2,
+                    minWidth: 30,
+                    width: 35,
+                }}
+            >
+                <ChevronRightIcon />
+            </Button>
+        )
+    }
 
-    const settings = {
-        dots: true,
+    const PrevArrow = (props: any) => {
+        return (
+            <Button variant="outlined" onClick={props.onClick}
+                sx={{
+                    position: "absolute",
+                    top: "50%",
+                    zIndex: 2,
+                    minWidth: 30,
+                    width: 35,
+                }}
+            >
+                <ChevronLeftIcon />
+            </Button>
+        )
+    }
+
+    const settings: Settings = {
         infinite: true,
         speed: 500,
-        slidesToShow: 1,
+        slidesToShow: 5,
         slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
     };
+    //box === div
     return (
-        <Container maxWidth="md">
-            <Box sx={{ width: "80%", margin: "0 auto" }}>
-                <Slider {...settings}>
-                    {slides.map((slide) => (
-                        <Box key={slide.id} sx={{ textAlign: "center", p: 2 }}>
-                            <Link href={slide.link} target="_blank" underline="none">
-                                <img
-                                    src={slide.image}
-                                    alt={slide.title}
-                                    style={{ maxWidth: "100%", borderRadius: "8px" }}
-                                />
-                                <Typography variant="h6" sx={{ mt: 2 }}>
-                                    {slide.title}
-                                </Typography>
-                            </Link>
-                        </Box>
-                    ))}
-                </Slider>
-            </Box>
 
+        <Box
+            sx={{
+                margin: "0 50px",
+                ".abc": {
+                    padding: "0 10px"
+                },
+                "h3": {
+                    border: "1px solid #ccc",
+                    padding: "20px",
+                    height: "200px",
 
+                }
+            }}
+        >
+            <h2> Multiple tracks </h2>
 
-        </Container>
+            <Slider {...settings}>
+                <div className="abc">
+                    <h3>Track 1</h3>
+                </div>
+                <div className="abc">
+                    <h3>Track 2</h3>
+                </div>
+                <div className="abc">
+                    <h3>Track 3</h3>
+                </div>
+                <div className="abc">
+                    <h3>Track 4</h3>
+                </div>
+                <div className="abc">
+                    <h3>Track 5</h3>
+                </div>
+                <div className="abc">
+                    <h3>Track 6</h3>
+                </div>
+                <div className="abc">
+                    <h3>Track 7</h3>
+                </div>
+                <div className="abc">
+                    <h3>Track 8</h3>
+                </div>
+                <div className="abc">
+                    <h3>Track 9</h3>
+                </div>
+            </Slider>
+            <Divider />
+        </Box>
+
     );
 
 }
