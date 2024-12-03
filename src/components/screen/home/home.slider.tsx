@@ -15,7 +15,7 @@ export default function HomeSlider() {
                 sx={{
                     position: "absolute",
                     right: 0,
-                    top: "50%",
+                    top: "45%",
                     zIndex: 2,
                     minWidth: 30,
                     width: 35,
@@ -31,7 +31,7 @@ export default function HomeSlider() {
             <Button variant="outlined" onClick={props.onClick}
                 sx={{
                     position: "absolute",
-                    top: "50%",
+                    top: "45%",
                     zIndex: 2,
                     minWidth: 30,
                     width: 35,
@@ -56,7 +56,7 @@ export default function HomeSlider() {
         <Box
             sx={{
                 margin: "0 50px",
-                ".abc": {
+                ".slider-home": {
                     padding: "0 10px"
                 },
                 "h3": {
@@ -70,31 +70,31 @@ export default function HomeSlider() {
             <h2> Multiple tracks </h2>
 
             <Slider {...settings}>
-                <div className="abc">
+                <div className="slider-home">
                     <h3>Track 1</h3>
                 </div>
-                <div className="abc">
+                <div className="slider-home">
                     <h3>Track 2</h3>
                 </div>
-                <div className="abc">
+                <div className="slider-home">
                     <h3>Track 3</h3>
                 </div>
-                <div className="abc">
+                <div className="slider-home">
                     <h3>Track 4</h3>
                 </div>
-                <div className="abc">
+                <div className="slider-home">
                     <h3>Track 5</h3>
                 </div>
-                <div className="abc">
+                <div className="slider-home">
                     <h3>Track 6</h3>
                 </div>
-                <div className="abc">
+                <div className="slider-home">
                     <h3>Track 7</h3>
                 </div>
-                <div className="abc">
+                <div className="slider-home">
                     <h3>Track 8</h3>
                 </div>
-                <div className="abc">
+                <div className="slider-home">
                     <h3>Track 9</h3>
                 </div>
             </Slider>

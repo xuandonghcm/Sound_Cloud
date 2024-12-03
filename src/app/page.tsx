@@ -9,6 +9,9 @@ export default function HomePage() {
   return (
     <Container>
       <HomeSlider />
+      <HomeSlider />
+      <HomeSlider />
+      <HomeSlider />
     </Container>
 
   );
