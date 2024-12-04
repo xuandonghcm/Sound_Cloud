@@ -5,6 +5,8 @@ import { AppBar, Box, Container, Typography } from '@mui/material';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { useHasMounted } from '@/utils/customHooks';
+import { BACKEND_URL } from '@/types/env';
+import { GET_TRACK_FOOTER_URL } from '@/constants/endpoints';
 
 
 export default function BottomAppBar() {
@@ -12,6 +14,7 @@ export default function BottomAppBar() {
     const hasMounted = useHasMounted();
 
     if (!hasMounted) return (<></>)//fragment
+    console.log("check", process.env.NEXT_PUBLIC_BACKEND_URL);
     return (
         <div>
             <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
@@ -34,7 +37,7 @@ export default function BottomAppBar() {
                             }}
                         >
                             <AudioPlayer
-                                src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"
+                                src={`${BACKEND_URL}${GET_TRACK_FOOTER_URL}`}
                                 volume={0.5}
                                 style={{
                                     boxShadow: "unset",
