@@ -1,15 +1,15 @@
 import { IBackendRes } from "@/types/backend";
 import { sendRequest } from "./apiWrapper";
-import { GET_TOP_TRACKS_BY_CATEGORIES } from "@/constants/endpoints";
+import { GET_TOP_TRACKS_BY_CATEGORIES } from "@/constants/service";
 
-const getTopTracksByCategories = () => {
-    const res = sendRequest<IBackendRes<ITrackTop>>({
+
+export const getTopTracksByCategories = async (param: IGetTopTracksByCategoriesRequest) => {
+    const res = await sendRequest<IBackendRes<ITrackTopResponse>>({
         endpoint: GET_TOP_TRACKS_BY_CATEGORIES,
         method: 'POST',
-        body: {
-            category: 'CHILL',
-            limit: 1
-        }
+        body: param
+
     })
-    return res;
+
+    return res.data;
 }

@@ -1,9 +1,15 @@
 
 import { IRequest } from '@/types/backend';
-import { BACKEND_URL } from '@/types/service';
+import { BACKEND_URL, TIMEOUT_REQUEST_MESSAGE, TIMEOUT_REQUEST_SERVER } from '@/constants/service';
 import queryString from 'query-string';
+import { AlertMessageType, AlertType, ERROR, UNKNOWN_ERROR } from '@/constants/globalConstants';
+import { useHasMounted } from '@/utils/customHooks';
+import { useAlertDialog } from '@/context/AlertDialogContext';
 
 export const sendRequest = async <T>(props: IRequest): Promise<T> => {
+
+    //const { showAlertDialog } = useAlertDialog();
+
     let {
         endpoint,
         method,
@@ -29,7 +35,7 @@ export const sendRequest = async <T>(props: IRequest): Promise<T> => {
     }
 
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 10000); // Timeout 10 giây
+    const timeout = setTimeout(() => controller.abort(), TIMEOUT_REQUEST_SERVER);
     options.signal = controller.signal;
 
     try {
@@ -42,28 +48,40 @@ export const sendRequest = async <T>(props: IRequest): Promise<T> => {
             const errorData = await response.json();
             const error = {
                 statusCode: response.status,
-                message: errorData?.message || 'Đã xảy ra lỗi không xác định.',
+                message: errorData?.message || UNKNOWN_ERROR,
                 error: errorData?.error || '',
             };
             throw error;
         }
     } catch (error: any) {
         clearTimeout(timeout);
-
+        let messageError = '';
         // Kiểm tra lỗi timeout
         if (error.name === 'AbortError') {
-            showSnackbar('Yêu cầu đã hết thời gian chờ. Vui lòng thử lại.', 'error');
+            // if (hasMounted) {
+            //     showAlertDialog({
+            //         title: ERROR,
+            //         message: TIMEOUT_REQUEST_MESSAGE || UNKNOWN_ERROR,
+            //         alertType: AlertType.Info,
+            //         messageType: AlertMessageType.Error
+            //     });
+            // }
+            messageError = TIMEOUT_REQUEST_MESSAGE;
         } else {
-            const message =
-                error?.message || 'Đã xảy ra lỗi không xác định. Vui lòng thử lại.';
-            showSnackbar(message, 'error');
+            messageError =
+                error?.message || UNKNOWN_ERROR;
+            // if (hasMounted) {
+            //     showAlertDialog({
+            //         title: ERROR,
+            //         message: message,
+            //         alertType: AlertType.Info,
+            //         messageType: AlertMessageType.Error
+            //     });
+            // }
         }
 
-        // Vẫn ném lỗi để xử lý tiếp ở nơi gọi
+        console.log("messageError>>>>>>>>>>>", messageError);
         throw error;
     }
 };
 
-function showSnackbar(arg0: string, arg1: string) {
-    throw new Error('Function not implemented.');
-}

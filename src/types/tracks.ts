@@ -1,5 +1,5 @@
 
-interface IUploader {
+interface IUploaderResponse {
     _id: string;
     email: string;
     name: string;
@@ -7,7 +7,7 @@ interface IUploader {
     type: string;
 }
 
-interface ITrackTop {
+interface ITrackTopResponse {
     _id: string;
     title: string;
     description: string;
@@ -16,8 +16,13 @@ interface ITrackTop {
     trackUrl: string;
     countLike: number;
     countPlay: number;
-    uploader: IUploader;
+    uploader: IUploaderResponse;
     isDeleted: boolean;
     createdAt: string;
     updatedAt: string;
+}
+
+interface IGetTopTracksByCategoriesRequest {
+    category: string;
+    limit: number
 }
