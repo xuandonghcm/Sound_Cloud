@@ -5,7 +5,7 @@ import {
 } from '@mui/material';
 
 import { GET_TOP_TRACKS_BY_CATEGORIES } from '@/constants/endpoints';
-import { sendRequest } from '@/utils/api';
+import { sendRequest } from '@/service/apiWrapper';
 import { IBackendRes } from '@/types/backend';
 
 export default async function HomePage() {
