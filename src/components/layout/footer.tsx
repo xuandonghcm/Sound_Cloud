@@ -5,7 +5,7 @@ import { AppBar, Box, Container, Typography } from '@mui/material';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { useHasMounted } from '@/utils/customHooks';
-import { BACKEND_URL, GET_TRACK_FOOTER_URL } from '@/constants/service';
+import { BACKEND_URL, GET_TRACK_FOOTER_URL } from '@/constants/service.Constants';
 
 
 
@@ -17,7 +17,7 @@ export default function BottomAppBar() {
 
     return (
         <div>
-            <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
+            <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0, background: theme.palette.background.default, }}>
                 <Container>
                     <Box
                         sx={{
@@ -26,6 +26,7 @@ export default function BottomAppBar() {
                             alignItems: { xs: "flex-start", md: "center" }, // Căn chỉnh khác nhau dựa trên kích thước
                             justifyContent: { md: "space-between" }, // Dàn đều trên màn hình lớn
                             gap: 2, // Khoảng cách giữa các phần tử
+
                         }}
                     >
                         {/* Audio Player */}
@@ -41,7 +42,7 @@ export default function BottomAppBar() {
                                 volume={0.5}
                                 style={{
                                     boxShadow: "unset",
-                                    background: theme.palette.background.paper, // Lấy màu từ theme
+                                    background: theme.palette.background.default, // Lấy màu từ theme
                                 }}
                             />
                         </Box>

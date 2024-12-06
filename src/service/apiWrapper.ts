@@ -1,6 +1,6 @@
 
-import { IRequest } from '@/types/backend';
-import { BACKEND_URL, TIMEOUT_REQUEST_MESSAGE, TIMEOUT_REQUEST_SERVER } from '@/constants/service';
+import { IRequest, IResponseFromServer } from '@/types/backend';
+import { BACKEND_URL, TIMEOUT_REQUEST_MESSAGE, TIMEOUT_REQUEST_SERVER } from '@/constants/service.Constants';
 import queryString from 'query-string';
 import { AlertMessageType, AlertType, ERROR, UNKNOWN_ERROR } from '@/constants/globalConstants';
 import { useHasMounted } from '@/utils/customHooks';
@@ -50,7 +50,7 @@ export const sendRequest = async <T>(props: IRequest): Promise<T> => {
                 statusCode: response.status,
                 message: errorData?.message || UNKNOWN_ERROR,
                 error: errorData?.error || '',
-            };
+            } as T;
             throw error;
         }
     } catch (error: any) {
@@ -58,30 +58,19 @@ export const sendRequest = async <T>(props: IRequest): Promise<T> => {
         let messageError = '';
         // Kiểm tra lỗi timeout
         if (error.name === 'AbortError') {
-            // if (hasMounted) {
-            //     showAlertDialog({
-            //         title: ERROR,
-            //         message: TIMEOUT_REQUEST_MESSAGE || UNKNOWN_ERROR,
-            //         alertType: AlertType.Info,
-            //         messageType: AlertMessageType.Error
-            //     });
-            // }
             messageError = TIMEOUT_REQUEST_MESSAGE;
         } else {
             messageError =
                 error?.message || UNKNOWN_ERROR;
-            // if (hasMounted) {
-            //     showAlertDialog({
-            //         title: ERROR,
-            //         message: message,
-            //         alertType: AlertType.Info,
-            //         messageType: AlertMessageType.Error
-            //     });
-            // }
         }
 
-        console.log("messageError>>>>>>>>>>>", messageError);
-        throw error;
+        const backendError = {
+            message: messageError,
+            statusCode: error?.statusCode || 500, // Thêm statusCode nếu cần
+            error: error?.error
+        } as T;
+
+        throw backendError;
     }
 };
 

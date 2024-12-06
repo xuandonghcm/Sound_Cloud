@@ -16,6 +16,7 @@ import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import Link from 'next/link';
 import { ThemeContext } from '../theme-registry/theme.registry';
 import { useRouter } from 'next/navigation';
+import { PATH } from '@/constants/service.Constants';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -58,7 +59,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const pages = ['Playlists', 'Likes', 'Upload'];
+
 export default function HeaderAppBar() {
   const router = useRouter();
   const { toggleTheme, mode } = React.useContext(ThemeContext);
@@ -220,7 +221,7 @@ export default function HeaderAppBar() {
           textDecoration: "unset"
         }
       }}>
-        <Link href='/playlist'>
+        <Link href={PATH.PLAYLIST}>
           <LyricsOutlinedIcon sx={{
             marginRight: '10px', "> a": {
               color: 'inherit',
@@ -236,7 +237,7 @@ export default function HeaderAppBar() {
           textDecoration: "unset"
         }
       }}>
-        <Link href='/likes' >
+        <Link href={PATH.LIKE} >
           <FavoriteBorderOutlinedIcon sx={{ marginRight: '10px' }} />
           Likes
         </Link>
@@ -247,7 +248,7 @@ export default function HeaderAppBar() {
           textDecoration: "unset"
         }
       }}>
-        <Link href='/upload' >
+        <Link href={PATH.UPLOAD} >
           <CloudUploadOutlinedIcon sx={{ marginRight: '10px' }} />
           Upload
         </Link>
@@ -279,18 +280,18 @@ export default function HeaderAppBar() {
             },
           }}
           >
-            <Link href='/'>
+            <Link href={PATH.BLANK}>
               <IconButton
                 size="large"
                 edge="start"
                 color="inherit"
                 aria-label="open drawer"
-                onClick={() => router.push('/')}
+                onClick={() => router.push(PATH.BLANK)}
               >
                 <NightlifeOutlinedIcon />
               </IconButton>
             </Link>
-            <Link href='/'>
+            <Link href={PATH.BLANK}>
               <Typography
                 variant="h6"
                 noWrap
@@ -320,9 +321,9 @@ export default function HeaderAppBar() {
               }
             }} >
 
-              <Link href='/playlist'><Typography sx={{ minWidth: 100 }}>Playlists</Typography></Link>
-              <Link href='/likes' ><Typography sx={{ minWidth: 100 }}>Likes</Typography></Link>
-              <Link href='/upload'><Typography sx={{ minWidth: 100 }}>Upload</Typography></Link>
+              <Link href={PATH.PLAYLIST}><Typography sx={{ minWidth: 100 }}>Playlists</Typography></Link>
+              <Link href={PATH.LIKE} ><Typography sx={{ minWidth: 100 }}>Likes</Typography></Link>
+              <Link href={PATH.UPLOAD}><Typography sx={{ minWidth: 100 }}>Upload</Typography></Link>
               <FormGroup>
                 <FormControlLabel
                   control={<MaterialUISwitch sx={{ m: 1 }} checked={mode === "dark"} onChange={toggleTheme} />}

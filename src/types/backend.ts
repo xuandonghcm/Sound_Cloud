@@ -9,7 +9,7 @@ export interface IRequest {
     nextOption?: any;
 }
 
-export interface IBackendRes<T> {
+export interface IResponseFromServer<T> {
     error?: string | string[];
     message: string;
     statusCode: number | string;

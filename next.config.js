@@ -15,6 +15,12 @@ const nextConfig = {
                 port: '',
                 pathname: '/random',
             },
+            {
+                protocol: 'http',
+                hostname: 'localhost',
+                port: '8000',
+                pathname: '/images/**', // Sử dụng ** để cho phép tất cả hình ảnh trong thư mục này
+            },
         ],
     },
 };

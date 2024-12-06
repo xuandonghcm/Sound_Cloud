@@ -23,6 +23,6 @@ interface ITrackTopResponse {
 }
 
 interface IGetTopTracksByCategoriesRequest {
-    category: string;
+    category?: string;
     limit: number
 }

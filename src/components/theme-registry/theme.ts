@@ -17,12 +17,12 @@ export const getTheme = (mode: "light" | "dark"): ThemeOptions => ({
       secondary: mode === "dark" ? "#cccccc" : "#011A27", // Màu chữ phụ
     },
     background: {
-      default: mode === "dark" ? "#1E1F26" : "#F1F1F2", // Màu nền chính
-      paper: mode === "dark" ? "#283655" : "#F1F1F2", // Màu nền phụ
+      default: mode === "dark" ? "#1E1F26" : "#FBFBFB", // Màu nền chính
+      paper: mode === "dark" ? "#283655" : "#FDD9DB", // Màu nền phụ
     },
 
     info: {
-      main: mode === "dark" ? "#283655" : "#6fb98f", // Đặt màu chính cho primary (có thể dùng nếu cần)
+      main: mode === "dark" ? "#283655" : "#FEB1B3", // Đặt màu chính cho primary (có thể dùng nếu cần)
     },
 
   },
