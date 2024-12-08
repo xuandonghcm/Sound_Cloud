@@ -1,10 +1,9 @@
 
-import { IRequest, IResponseFromServer } from '@/types/backend';
-import { BACKEND_URL, TIMEOUT_REQUEST_MESSAGE, TIMEOUT_REQUEST_SERVER } from '@/constants/service.Constants';
+import { IRequest } from '@/types/backend';
+import { ABORT_ERROR, BACKEND_URL, TIMEOUT_REQUEST_MESSAGE, TIMEOUT_REQUEST_SERVER } from '@/constants/service.Constants';
 import queryString from 'query-string';
-import { AlertMessageType, AlertType, ERROR, UNKNOWN_ERROR } from '@/constants/globalConstants';
-import { useHasMounted } from '@/utils/customHooks';
-import { useAlertDialog } from '@/context/AlertDialogContext';
+import { UNKNOWN_ERROR } from '@/constants/globalConstants';
+
 
 export const sendRequest = async <T>(props: IRequest): Promise<T> => {
 
@@ -57,7 +56,7 @@ export const sendRequest = async <T>(props: IRequest): Promise<T> => {
         clearTimeout(timeout);
         let messageError = '';
         // Kiểm tra lỗi timeout
-        if (error.name === 'AbortError') {
+        if (error.name === ABORT_ERROR) {
             messageError = TIMEOUT_REQUEST_MESSAGE;
         } else {
             messageError =

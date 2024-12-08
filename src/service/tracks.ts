@@ -13,3 +13,5 @@ export const getTopTracksByCategories = async (param: IGetTopTracksByCategoriesR
     const data = Array.isArray(res.data) ? res.data : res.data ? [res.data] : [];
     return { ...res, data };
 }
+
+

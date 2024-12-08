@@ -142,7 +142,7 @@ export default function HeaderAppBar() {
         paper: {
           elevation: 0,
           sx: {
-            backgroundColor: 'info.main',
+            backgroundColor: 'background.navbar',
             overflow: 'visible',
             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
             mt: 1.5,
@@ -187,7 +187,7 @@ export default function HeaderAppBar() {
         paper: {
           elevation: 0,
           sx: {
-            backgroundColor: 'info.main',
+            backgroundColor: 'background.navbar',
             overflow: 'visible',
             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
             mt: 1.5,
@@ -258,9 +258,9 @@ export default function HeaderAppBar() {
           color: "text.secondary",
           borderColor: 'text.secondary',
           borderStyle: 'solid',
-          backgroundColor: 'info.main', // Màu nền
+          backgroundColor: 'background.paper', // Màu nền
           '&:hover': {
-            backgroundColor: '#C0AB84', // Màu khi hover
+            backgroundColor: 'background.footer', // Màu khi hover
           },
         }} > <Typography>TX</Typography></Avatar>
         Profile
@@ -270,7 +270,7 @@ export default function HeaderAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: 'info.main' }}>
+      <AppBar position="static" sx={{ backgroundColor: 'background.navbar' }}>
         <Container >
           <Toolbar sx={{
             color: 'text.primary', // Màu chữ tự động thay đổi theo theme
@@ -344,9 +344,9 @@ export default function HeaderAppBar() {
                   color: "text.secondary",
                   borderColor: 'text.secondary',
                   borderStyle: 'solid',
-                  backgroundColor: 'info.main', // Màu nền
+                  backgroundColor: 'background.paper', // Màu nền
                   '&:hover': {
-                    backgroundColor: '#C0AB84', // Màu khi hover
+                    backgroundColor: 'background.footer', // Màu khi hover
                   },
                 }} >TX</Avatar>
               </IconButton>

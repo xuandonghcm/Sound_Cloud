@@ -10,7 +10,9 @@ import { AlertDialogProvider } from '@/context/AlertDialogContext';
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+
       <body>
+        <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/timeline.esm.js"></script>
         <ThemeRegistry>
           <AlertDialogProvider>
             <HeaderAppBar />

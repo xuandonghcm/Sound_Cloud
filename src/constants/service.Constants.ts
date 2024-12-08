@@ -1,11 +1,9 @@
 export const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 export const BACKEND_IMAGES_URL = process.env.NEXT_PUBLIC_BACKEND_IMAGES_URL;
 export const BACKEND_TRACKS_URL = process.env.NEXT_PUBLIC_BACKEND_TRACKS_URL;
-export const GET_BACKEND_TRACKS = (audio: string): string => {
-    return BACKEND_TRACKS_URL ? `${BACKEND_TRACKS_URL}${audio}` : '';
-};
+
 export const TIMEOUT_REQUEST_SERVER = 60 * 1000 * 3;
-//export const TIMEOUT_REQUEST_SERVER = 1;
+export const ABORT_ERROR = 'AbortError';
 export const TIMEOUT_REQUEST_MESSAGE = 'TIMEOUT_LIMITED';
 
 
@@ -17,7 +15,7 @@ export const GET_TOP_TRACKS_BY_CATEGORIES = '/v1/tracks/top';
 export const PATH = {
     BLANK: '/',
     HOME: '/home',
-    TRACK: (id: string, audio: string) => `/track/${id}?audio=${audio}`,
+    TRACK: (_id: string, audio: string) => `/track/${_id}?audio=${audio}`,
     LIKE: '/likes',
     PLAYLIST: '/playlist',
     PROFILE: '/profile',

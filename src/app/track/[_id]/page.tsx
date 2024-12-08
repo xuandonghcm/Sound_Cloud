@@ -1,15 +1,16 @@
 'use client'
-import { useEffect, useState } from 'react'
+
 import WaveCommon from '@/components/common/track/Wave'
-import { BACKEND_TRACKS_URL } from '@/constants/service.Constants'
+import { Container } from '@mui/material';
 
 
 const DetailTrackPage = (props: any) => {
-    const { params } = props
-
 
     return (
-        <WaveCommon />
+        <Container>
+            <WaveCommon />
+        </Container>
+
     )
 }
 export default DetailTrackPage;

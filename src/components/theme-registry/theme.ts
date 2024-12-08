@@ -7,7 +7,16 @@ const roboto = Roboto({
   subsets: ["latin"],
   display: "swap",
 });
-
+declare module '@mui/material/styles/createPalette' {
+  interface TypeBackground {
+    navbar?: string; // Thêm thuộc tính navbar
+    footer?: string;
+    wavetop?: string;
+    wavebottom?: string;
+    progresswavebottom?: string;
+    progresswavetop?: string;
+  }
+}
 // Base function để tạo theme dựa trên mode (light/dark)
 export const getTheme = (mode: "light" | "dark"): ThemeOptions => ({
   palette: {
@@ -17,13 +26,19 @@ export const getTheme = (mode: "light" | "dark"): ThemeOptions => ({
       secondary: mode === "dark" ? "#cccccc" : "#011A27", // Màu chữ phụ
     },
     background: {
-      default: mode === "dark" ? "#1E1F26" : "#FBFBFB", // Màu nền chính
-      paper: mode === "dark" ? "#283655" : "#FDD9DB", // Màu nền phụ
+      default: mode === "dark" ? "#181C14" : "#EEEEEE", // màu nền chính
+      paper: mode === "dark" ? "#283655" : "#B2C8DF",// màu nền phụ
+
+      navbar: mode === "dark" ? "#212e49" : "#6E85B7",// màu nền navbar
+      footer: mode === "dark" ? "#283655" : "#C4D7E0",// màu nền footer
+
+      wavetop: "#283655", // màu nền khi chạy nhạc
+      wavebottom: "#7077A1", // màu nền wave
+      progresswavetop: "#B2C8DF", // màu nền khi chạy nhạc
+      progresswavebottom: "#cfcfcf",  // màu nền khi chạy nhạc
+
     },
 
-    info: {
-      main: mode === "dark" ? "#283655" : "#FEB1B3", // Đặt màu chính cho primary (có thể dùng nếu cần)
-    },
 
   },
   typography: {

@@ -23,6 +23,9 @@ const nextConfig = {
             },
         ],
     },
+    experimental: {
+        esmExternals: true, // Cho phép sử dụng ESM module
+    },
 };
 
 module.exports = nextConfig;

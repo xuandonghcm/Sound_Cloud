@@ -1,6 +1,6 @@
 'use client'
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles'; // Import useTheme
+import { useTheme } from '@mui/material/styles';
 import { AppBar, Box, Container, Typography } from '@mui/material';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
@@ -17,7 +17,7 @@ export default function BottomAppBar() {
 
     return (
         <div>
-            <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0, background: theme.palette.background.default, }}>
+            <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0, background: theme.palette.background.footer, }}>
                 <Container>
                     <Box
                         sx={{
@@ -42,7 +42,7 @@ export default function BottomAppBar() {
                                 volume={0.5}
                                 style={{
                                     boxShadow: "unset",
-                                    background: theme.palette.background.default, // Lấy màu từ theme
+                                    background: theme.palette.background.footer, // Lấy màu từ theme
                                 }}
                             />
                         </Box>

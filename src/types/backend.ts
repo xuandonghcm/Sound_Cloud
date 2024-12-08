@@ -1,5 +1,6 @@
 
 export interface IRequest {
+    getfile?: boolean;
     endpoint: string;
     method: string;
     body?: { [key: string]: any };
@@ -7,6 +8,7 @@ export interface IRequest {
     useCredentials?: boolean;
     headers?: any;
     nextOption?: any;
+    responseType?: string;
 }
 
 export interface IResponseFromServer<T> {
