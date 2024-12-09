@@ -28,9 +28,11 @@ export default async function HomePage() {
 
   }
 
-  const chills = await getTopTracksByCategories(categoriesChillRequest);
-  const workouts = await getTopTracksByCategories(categoriesWorkoutsRequest);
-  const partys = await getTopTracksByCategories(categoriesPartyRequest);
+  const [chills, workouts, partys] = await Promise.all([
+    getTopTracksByCategories(categoriesChillRequest),
+    getTopTracksByCategories(categoriesWorkoutsRequest),
+    getTopTracksByCategories(categoriesPartyRequest),
+  ]);
 
   return (
     <Container>

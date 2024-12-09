@@ -1,4 +1,4 @@
-.wave-form-container {
+.wave-form-show {
     cursor: pointer;
     position: relative;
 
@@ -32,7 +32,7 @@
     margin-top: -1px;
     transform: translateY(-50%);
     font-size: 11px;
-    background: rgba(0, 0, 0, 0.75);
+    background: var(--text-darkstormy);
     padding: 2px;
     color: #ddd;
 }
@@ -43,4 +43,74 @@
 
 .duration {
     right: 0;
+}
+
+
+.info-button-play {
+    border-radius: 50%;
+    background: var(--progresswavetop);
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.info-icon {
+    font-size: 30px;
+    color: var(--text-white);
+}
+
+.info-audio-name {
+    padding: 0 5px;
+    background: var(--darkstormy);
+    font-size: 30px;
+    width: fit-content;
+    color: var(--text-white);
+}
+
+.info-audio-author {
+    padding: 0 5px;
+    margin-top: 10px;
+    background: var(--darkstormy);
+    font-size: 20px;
+    width: fit-content;
+    color: var(--text-white);
+}
+
+.overlay-wave {
+    position: absolute;
+    height: 30px;
+    width: 100%;
+    bottom: 0;
+    backdrop-filter: brightness(0.5);
+}
+
+.right-wave {
+    width: 25%;
+    padding: 15;
+    display: flex;
+    align-items: center;
+
+}
+
+.right-wave-img {
+    background: #cccccc;
+}
+
+.left-wave {
+    width: 75%;
+    height: calc(100% - 10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container-wave-show {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    height: 400px;
+    background: linear-gradient(135deg, var(--wavebgt) 0%, var(--wavebgf)100%);
 }
