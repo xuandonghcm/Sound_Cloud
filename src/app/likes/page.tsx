@@ -1,5 +1,5 @@
+import React from 'react';
 const LikePage = () => {
-    console.log("check", process.env.NEXT_PUBLIC_BACKEND_URL);
-    return (<>LikePage</>)
+    return (<React.Suspense fallback={<div>Loading...</div>}>LikePage </React.Suspense>)
 }
 export default LikePage;

@@ -28,5 +28,10 @@ export interface IModelPaginate<T> {
     result: T[]
 }
 
-
+export type FetchError = {
+    message: string; // Mô tả lỗi
+    statusCode: number; // Mã trạng thái HTTP
+    error?: string; // Chi tiết lỗi (nếu có)
+    digest?: string; // Dấu vết duy nhất hoặc mã tham chiếu lỗi
+};
 

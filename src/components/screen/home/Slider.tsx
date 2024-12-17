@@ -10,7 +10,7 @@ import { useTheme } from '@mui/material/styles';
 import Image from "next/image";
 import { BACKEND_IMAGES_URL } from "@/constants/service.Constants";
 import { PATH } from "@/constants/service.Constants";
-
+import Grid from '@mui/material/Grid';
 interface IProps {
     data: ITrackTopResponse[]
     title: string
@@ -66,6 +66,32 @@ const HomeSlider = (props: IProps) => {
         slidesToScroll: 1,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
+        responsive: [
+            {
+                breakpoint: 1200, // Khi màn hình nhỏ hơn 1200px
+                settings: {
+                    slidesToShow: 4,
+                },
+            },
+            {
+                breakpoint: 960, // Khi màn hình nhỏ hơn 960px
+                settings: {
+                    slidesToShow: 3,
+                },
+            },
+            {
+                breakpoint: 768, // Khi màn hình nhỏ hơn 768px
+                settings: {
+                    slidesToShow: 2,
+                },
+            },
+            {
+                breakpoint: 480, // Khi màn hình nhỏ hơn 480px
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+        ],
     };
     //box === div
     return (

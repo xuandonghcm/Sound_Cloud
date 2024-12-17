@@ -34,14 +34,43 @@ export default async function HomePage() {
     getTopTracksByCategories(categoriesPartyRequest),
   ]);
 
+
+
+  if (chills.error || workouts.error || partys.error) {
+    console.error("Errors occurred:", chills?.error);
+    return (
+      <>
+        <div>
+          <h1>Error</h1>
+          {chills.message}<br />
+          {chills.statusCode}
+        </div>
+        <div>
+          <h1>Error</h1>
+          {partys.message}<br />
+          {partys.statusCode}
+        </div>
+        <div>
+          <h1>Error</h1>
+          {workouts.message}<br />
+          {workouts.statusCode}
+        </div>
+      </>
+
+    );
+  }
+
   return (
+
     <Container>
       <HomeSlider data={chills?.data ?? []} title={CategoryType.CHILL} />
       <HomeSlider data={workouts?.data ?? []} title={CategoryType.WORKOUT} />
       <HomeSlider data={partys?.data ?? []} title={CategoryType.PARTY} />
-
     </Container>
 
   );
+
+  // Xử lý kết quả thành công
+
 }
 

@@ -1,5 +1,5 @@
 
-import { IRequest } from '@/types/backend';
+import { IRequest, IResponseFromServer } from '@/types/backend';
 import { ABORT_ERROR, BACKEND_URL, TIMEOUT_REQUEST_MESSAGE, TIMEOUT_REQUEST_SERVER } from '@/constants/service.Constants';
 import queryString from 'query-string';
 import { UNKNOWN_ERROR } from '@/constants/globalConstants';
@@ -67,8 +67,7 @@ export const sendRequest = async <T>(props: IRequest): Promise<T> => {
             message: messageError,
             statusCode: error?.statusCode || 500, // Thêm statusCode nếu cần
             error: error?.error
-        } as T;
-
+        }
         throw backendError;
     }
 };
