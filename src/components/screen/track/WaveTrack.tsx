@@ -12,6 +12,7 @@ import Image from 'next/image';
 import Box from '@mui/material/Box/Box';
 import { Typography, useMediaQuery } from "@mui/material";
 import Grid from '@mui/material/Grid';
+import Tooltip from '@mui/material/Tooltip';
 
 
 const WaveTrack = () => {
@@ -105,6 +106,36 @@ const WaveTrack = () => {
         const secondsRemainder = Math.round(seconds) % 60
         const paddedSeconds = `0${secondsRemainder}`.slice(-2)
         return `${minutes}:${paddedSeconds}`
+    }
+
+    const arrComments = [
+        {
+            id: 1,
+            avatar: "http://localhost:8000/images/chill1.png",
+            moment: 10,
+            user: "username 1",
+            content: "just a comment1"
+        },
+        {
+            id: 2,
+            avatar: "http://localhost:8000/images/chill1.png",
+            moment: 30,
+            user: "username 2",
+            content: "just a comment3"
+        },
+        {
+            id: 3,
+            avatar: "http://localhost:8000/images/chill1.png",
+            moment: 50,
+            user: "username 3",
+            content: "just a comment3"
+        },
+    ]
+
+    const calLeft = (moment: number) => {
+        const totalSongsTime = 199;
+        const percent = (moment / totalSongsTime) * 100;
+        return `${percent}%`;
     }
 
     return (
@@ -204,57 +235,40 @@ const WaveTrack = () => {
                                 <div className="duration" >{duration}</div>
                                 <div ref={hoverRef} className="hover-wave"></div>
                                 <div className="overlay-wave"></div>
-
+                                <div className="comments"
+                                    style={{ position: "relative" }}
+                                >
+                                    {
+                                        arrComments.map(item => {
+                                            return (
+                                                <Tooltip title={item.content}>
+                                                    <Image
+                                                        onPointerMove={(e) => {
+                                                            const hover = hoverRef.current!;
+                                                            hover.style.width = calLeft(item.moment + 3);
+                                                        }}
+                                                        key={item.id}
+                                                        height={20}
+                                                        width={20}
+                                                        src={`/images/chill1.png`}
+                                                        alt="cmt"
+                                                        style={{
+                                                            position: "absolute",
+                                                            top: 71,
+                                                            zIndex: 20,
+                                                            left: calLeft(item.moment)
+                                                        }}
+                                                    />
+                                                </Tooltip>
+                                            )
+                                        })
+                                    }
+                                </div>
                             </div>
                         </Grid>
                     </Grid>
                 </Grid>
             </Grid >
-
-
-            {/* <div style={{ marginTop: 40 }}>
-                <div className='container-wave-show '>
-                    <div className="left-wave">
-                        <div className="info" style={{ display: "flex" }}>
-                            <div>
-                                <div
-                                    onClick={() => onPlayClick()}
-                                    className='info-button-play'
-                                >
-                                    {isPlaying === true ?
-                                        <PauseIcon className='info-icon' />
-                                        :
-                                        <PlayArrowIcon className='info-icon' />
-                                    }
-                                </div>
-                            </div>
-                            <div style={{ marginLeft: 20 }}>
-                                <div className='info-audio-name '>
-                                    
-                                </div>
-                                <div className='info-audio-author'>
-                                    Xesi, Masew, Nhật Nguyễn
-                                </div>
-                            </div>
-                        </div>
-                        <div ref={containerRef} className="wave-form-show">
-                            <div className="time" >{time}</div>
-                            <div className="duration" >{duration}</div>
-                            <div ref={hoverRef} className="hover-wave"></div>
-                            <div className="overlay-wave"></div>
-
-                        </div>
-                    </div>
-                    <div className="right-wave ">
-                        <div className='right-wave-img'>
-                            <Image src={'/images/chill1.png'}
-                                alt={'aaa'}
-                                width={250} // Đặt chiều rộng mong muốn
-                                height={250} />
-                        </div>
-                    </div>
-                </div>
-            </div > */}
         </>
 
 
