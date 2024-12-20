@@ -5,6 +5,7 @@ import ThemeRegistry from '@/components/theme-registry/theme.registry';
 import { AlertDialogProvider } from '@/context/AlertDialogContext';
 import '@/style/global.scss'
 import Container from '@mui/material/Container/Container';
+import NextAuthWrapper from '@/lib/StoreWrapper';
 
 
 
@@ -13,14 +14,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
 
       <body>
-        <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/timeline.esm.js"></script>
-        <ThemeRegistry>
-          <AlertDialogProvider>
-            <HeaderAppBar />
-            <Container sx={{ marginTop: "20px", paddingBottom: "180px" }}>{children}</Container>
-            <BottomAppBar />
 
-          </AlertDialogProvider>
+        <ThemeRegistry>
+          <NextAuthWrapper>
+            <AlertDialogProvider>
+              <HeaderAppBar />
+              <Container sx={{ marginTop: "20px", paddingBottom: "180px" }}>{children}</Container>
+              <BottomAppBar />8
+            </AlertDialogProvider>
+          </NextAuthWrapper>
         </ThemeRegistry>
       </body>
     </html>

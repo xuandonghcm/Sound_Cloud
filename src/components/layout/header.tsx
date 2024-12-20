@@ -1,24 +1,21 @@
 'use client'
 import * as React from 'react';
-
 import {
   styled, alpha, AppBar, Box, Toolbar, IconButton, Typography, InputBase, MenuItem, Menu,
   Avatar, FormControlLabel, FormGroup, Switch, Container
 } from '@mui/material';
-
 import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import NightlifeOutlinedIcon from '@mui/icons-material/NightlifeOutlined';
 import LyricsOutlinedIcon from '@mui/icons-material/LyricsOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-
 import Link from 'next/link';
 import { ThemeContext } from '../theme-registry/theme.registry';
 import { useRouter } from 'next/navigation';
 import { PATH } from '@/constants/service.Constants';
-
-
+import { useSession, signIn, signOut } from "next-auth/react"
+import FavoriteIcon from '@mui/icons-material/Favorite';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -68,7 +65,8 @@ export default function HeaderAppBar() {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+  const { data: session } = useSession();
+  console.log(">>> check session server: ", session)
   const handleProfileMenuOpen = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
@@ -172,14 +170,16 @@ export default function HeaderAppBar() {
     >
 
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Sign Out</MenuItem>
+      <MenuItem onClick={() => {
+        handleMenuClose();
+        signOut();
+      }}>Sign Out</MenuItem>
     </Menu>
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
+  const renderMobileMenu = session ? (
     <Menu
-
       anchorEl={mobileMoreAnchorEl}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
@@ -254,19 +254,78 @@ export default function HeaderAppBar() {
         </Link>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen} sx={{ display: "flex", alignItems: "center" }}>
-        <Avatar alt="" src="" sx={{
+        <Avatar alt="" src="{session.user?.image}" sx={{
           color: "text.secondary",
           borderColor: 'text.secondary',
           borderStyle: 'solid',
-          backgroundColor: 'background.paper', // Màu nền
+          backgroundColor: 'background.paper',
           '&:hover': {
-            backgroundColor: 'background.footer', // Màu khi hover
+            backgroundColor: 'background.footer',
           },
-        }} > <Typography>TX</Typography></Avatar>
+        }} />
         Profile
       </MenuItem>
     </Menu>
-  );
+  ) : <Menu
+    anchorEl={mobileMoreAnchorEl}
+    open={isMobileMenuOpen}
+    onClose={handleMobileMenuClose}
+    slotProps={{
+      paper: {
+        elevation: 0,
+        sx: {
+          backgroundColor: 'background.navbar',
+          overflow: 'visible',
+          filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+          mt: 1.5,
+          '& .MuiAvatar-root': {
+            width: 32,
+            height: 32,
+            ml: -0.5,
+            mr: 1,
+          },
+          '&::before': {
+            content: '""',
+            display: 'block',
+            position: 'absolute',
+            top: 0,
+            right: 14,
+            width: 10,
+            height: 10,
+            bgcolor: 'background.info',
+            transform: 'translateY(-50%) rotate(45deg)',
+            zIndex: 0,
+          },
+        },
+      },
+    }}
+    transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+  >
+    <MenuItem
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        color: 'inherit', // Đảm bảo kế thừa màu sắc
+        textDecoration: 'none', // Loại bỏ gạch chân
+      }}
+    >
+
+      <Box component="a" display="flex" alignItems="center" gap={1} sx={{ color: 'inherit', textDecoration: 'none' }}>
+        <FavoriteIcon sx={{
+          color: 'initial'
+        }} />
+        <Typography
+          sx={{
+            color: 'initial',
+            cursor: 'pointer'
+          }}
+          onClick={() => signIn()}>Login</Typography>
+      </Box>
+
+    </MenuItem>
+  </Menu>;
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -320,36 +379,41 @@ export default function HeaderAppBar() {
                 textDecoration: "unset"
               }
             }} >
+              {session ?
+                <>
+                  <Link href={PATH.PLAYLIST}><Typography sx={{ minWidth: 100 }}>Playlists</Typography></Link>
+                  <Link href={PATH.LIKE} ><Typography sx={{ minWidth: 100 }}>Likes</Typography></Link>
+                  <Link href={PATH.UPLOAD}><Typography sx={{ minWidth: 100 }}>Upload</Typography></Link>
+                  <FormGroup>
+                    <FormControlLabel
+                      control={<MaterialUISwitch sx={{ m: 1 }} checked={mode === "dark"} onChange={toggleTheme} />}
+                      label={mode === "dark" ? "" : ""}
+                    />
+                  </FormGroup>
+                  <IconButton
+                    size="large"
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    onClick={handleProfileMenuOpen}
+                    color="inherit"
 
-              <Link href={PATH.PLAYLIST}><Typography sx={{ minWidth: 100 }}>Playlists</Typography></Link>
-              <Link href={PATH.LIKE} ><Typography sx={{ minWidth: 100 }}>Likes</Typography></Link>
-              <Link href={PATH.UPLOAD}><Typography sx={{ minWidth: 100 }}>Upload</Typography></Link>
-              <FormGroup>
-                <FormControlLabel
-                  control={<MaterialUISwitch sx={{ m: 1 }} checked={mode === "dark"} onChange={toggleTheme} />}
-                  label={mode === "dark" ? "" : ""}
-                />
-              </FormGroup>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
+                  >
+                    <Avatar alt="" src="/images/no-avatar.png" sx={{
+                      color: "text.secondary",
+                      borderColor: 'text.secondary',
+                      borderStyle: 'solid',
+                      backgroundColor: 'background.paper', // Màu nền
+                      '&:hover': {
+                        backgroundColor: 'background.footer', // Màu khi hover
+                      },
+                    }} />
+                  </IconButton>
+                </>
+                : <> <Typography sx={{ minWidth: 100, cursor: 'pointer' }} onClick={() => signIn()}>Login</Typography></>}
 
-              >
-                <Avatar alt="" src="" sx={{
-                  color: "text.secondary",
-                  borderColor: 'text.secondary',
-                  borderStyle: 'solid',
-                  backgroundColor: 'background.paper', // Màu nền
-                  '&:hover': {
-                    backgroundColor: 'background.footer', // Màu khi hover
-                  },
-                }} >TX</Avatar>
-              </IconButton>
+
             </Box>
             {/* right menu mobie */}
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

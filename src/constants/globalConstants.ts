@@ -1,12 +1,12 @@
-export const AlertMessageType = {
-    Success: 'success',
-    Info: 'info',
-    Error: 'error',
-    Warning: 'warning',
+export enum AlertMessageType {
+    Success = 'success',
+    Info = 'info',
+    Error = 'error',
+    Warning = 'warning',
 };
-export const AlertType = {
-    Confirm: 'Confirm',
-    Info: 'info',
+export enum AlertType {
+    Confirm = 'Confirm',
+    Info = 'info',
 };
 export const UNKNOWN_ERROR = 'UNKNOWN_ERROR';
 export const CONFIRM = 'CONFIRM';

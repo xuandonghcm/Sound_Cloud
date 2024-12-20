@@ -1,6 +1,5 @@
 "use client"
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, Button } from '@mui/material';
 import { AlertMessageType, AlertType } from '@/constants/globalConstants';
 import InFoDialog from '@/components/common/dialog/InFoDialog';
 import ConfirmDialog from '@/components/common/dialog/ConfirmDialog';
@@ -40,7 +39,6 @@ export const AlertDialogProvider: React.FC<{ children: ReactNode }> = ({ childre
             setOpen(false);
             setDialogState(null);
         }
-
     };
 
     const renderDialog = () => {
