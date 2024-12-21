@@ -12,10 +12,11 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import Link from 'next/link';
 import { ThemeContext } from '../theme-registry/theme.registry';
-import { useRouter } from 'next/navigation';
-import { PATH } from '@/constants/service.Constants';
+import { redirect, useRouter } from 'next/navigation';
+import { PATH } from '@/constants/PathConstants';
 import { useSession, signIn, signOut } from "next-auth/react"
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Router } from 'next/router';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -315,13 +316,11 @@ export default function HeaderAppBar() {
       <Box component="a" display="flex" alignItems="center" gap={1} sx={{ color: 'inherit', textDecoration: 'none' }}>
         <FavoriteIcon sx={{
           color: 'initial'
-        }} />
-        <Typography
-          sx={{
-            color: 'initial',
-            cursor: 'pointer'
-          }}
-          onClick={() => signIn()}>Login</Typography>
+        }} /><Link href={PATH.SIGNIN}>
+          <Typography
+            sx={{
+              color: 'initial'
+            }}>Login</Typography></Link>
       </Box>
 
     </MenuItem>
@@ -411,7 +410,7 @@ export default function HeaderAppBar() {
                     }} />
                   </IconButton>
                 </>
-                : <> <Typography sx={{ minWidth: 100, cursor: 'pointer' }} onClick={() => signIn()}>Login</Typography></>}
+                : <Link href={PATH.SIGNIN}><Typography sx={{ minWidth: 100 }} >Login</Typography></Link>}
 
 
             </Box>

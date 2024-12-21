@@ -156,7 +156,7 @@ const WaveTrack = () => {
                     md={3}
                     sx={{
                         order: { xs: 0, md: 1 }, alignItems: "center",
-                        minHeight: { xs: "250px", md: "270px" }, // Đặt chiều cao tối thiểu
+                        minHeight: { xs: "250px", md: "270px" },
                         overflow: "auto",
 
                     }}
@@ -164,7 +164,7 @@ const WaveTrack = () => {
                     <Box sx={{ alignItems: "center" }}>
                         <Image src={'/images/chill1.png'}
                             alt={'aaa'}
-                            width={250} // Đặt chiều rộng mong muốn
+                            width={250}
                             height={250} />
                     </Box>
                 </Grid>
@@ -176,7 +176,7 @@ const WaveTrack = () => {
                     md={9}
                     sx={{
                         order: { xs: 1, md: 0 },
-                        Height: { xs: "250px", md: "300px" }, // Đặt chiều cao tối thiểu
+                        Height: { xs: "250px", md: "300px" },
                         overflow: "auto",
                     }}
                 >
@@ -241,7 +241,7 @@ const WaveTrack = () => {
                                     {
                                         arrComments.map(item => {
                                             return (
-                                                <Tooltip title={item.content}>
+                                                <Tooltip title={item.content} key={item.id}>
                                                     <Image
                                                         onPointerMove={(e) => {
                                                             const hover = hoverRef.current!;

@@ -1,6 +1,6 @@
 import { FetchError, IResponseFromServer } from "@/types/backend";
 import { sendRequest } from "./apiWrapper";
-import { GET_TOP_TRACKS_BY_CATEGORIES } from "@/constants/service.Constants";
+import { GET_TOP_TRACKS_BY_CATEGORIES } from "@/constants/PathConstants";
 
 
 export const getTopTracksByCategories = async (param: IGetTopTracksByCategoriesRequest) => {

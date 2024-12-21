@@ -1,4 +1,4 @@
-import { BACKEND_TRACKS_URL } from '@/constants/service.Constants';
+import { BACKEND_TRACKS_URL } from '@/constants/PathConstants';
 import { NextResponse, NextRequest } from 'next/server'
 
 export async function GET(requet: NextRequest) {

@@ -1,8 +1,8 @@
 
 import { IRequest, IResponseFromServer } from '@/types/backend';
-import { ABORT_ERROR, BACKEND_URL, TIMEOUT_REQUEST_MESSAGE, TIMEOUT_REQUEST_SERVER } from '@/constants/service.Constants';
+import { ABORT_ERROR, BACKEND_URL, TIMEOUT_REQUEST_MESSAGE, TIMEOUT_REQUEST_SERVER } from '@/constants/PathConstants';
 import queryString from 'query-string';
-import { UNKNOWN_ERROR } from '@/constants/globalConstants';
+import { UNKNOWN_ERROR } from '@/constants/GlobalConstants';
 
 
 export const sendRequest = async <T>(props: IRequest): Promise<T> => {

@@ -15,7 +15,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import ErrorIcon from '@mui/icons-material/Error';
 import WarningIcon from '@mui/icons-material/Warning';
 import { useTheme } from '@mui/material/styles';
-import { AlertMessageType, CLOSE } from '@/constants/globalConstants';
+import { AlertMessageType, CLOSE } from '@/constants/GlobalConstants';
 
 const AlertIcons: Record<AlertMessageType, React.ReactNode> = {
   success: <CheckCircleIcon color="success" fontSize="large" />,

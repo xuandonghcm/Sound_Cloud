@@ -1,6 +1,6 @@
 "use client"
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-import { AlertMessageType, AlertType } from '@/constants/globalConstants';
+import { AlertMessageType, AlertType } from '@/constants/GlobalConstants';
 import InFoDialog from '@/components/common/dialog/InFoDialog';
 import ConfirmDialog from '@/components/common/dialog/ConfirmDialog';
 
@@ -81,7 +81,7 @@ export const AlertDialogProvider: React.FC<{ children: ReactNode }> = ({ childre
 export const useAlertDialog = () => {
     const context = useContext(AlertDialogContext);
     if (!context) {
-        throw new Error('useAlertDialog phải được sử dụng bên trong AlertDialogProvider');
+        throw new Error('');
     }
     return context;
 };

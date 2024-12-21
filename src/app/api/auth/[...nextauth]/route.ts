@@ -6,6 +6,7 @@ import { AuthOptions } from 'next-auth'
 import { ITypeUSer, SocialMediaAuthRequest, LoginRequest, IResponseUSer } from "@/types/users"
 import { getTokenBySocialMedia, Login } from "@/service/users"
 import CredentialsProvider from "next-auth/providers/credentials";
+import { PATH } from "@/constants/PathConstants"
 export const authOptions: AuthOptions = {
     // Configure one or more authentication providers
     providers: [
@@ -27,7 +28,7 @@ export const authOptions: AuthOptions = {
                 if (res && res.data) {
                     return res.data as any;
                 } else {
-                    throw new Error("Invalid credentials");
+                    throw new Error(res.message);
                 }
             }
         }),
@@ -46,13 +47,7 @@ export const authOptions: AuthOptions = {
                     response_type: "code"
                 }
             }
-        }),
-        FacebookProvider({
-            clientId: process.env.FACEBOOK_CLIENT_ID as string,
-            clientSecret: process.env.FACEBOOK_SECRET as string,
-            name: 'facebook'
-        }),
-
+        })
     ],
 
     secret: process.env.NEXT_AUTH_SECRET,
@@ -87,7 +82,15 @@ export const authOptions: AuthOptions = {
             }
             return session;
         }
-    }
+    },
+    // pages: {
+    //     signIn: PATH.SIGNIN,
+    //     signOut: '/auth/signout',
+    //     error: '/auth/error', // Error code passed in query string as ?error=
+    //     verifyRequest: '/auth/verify-request', // (used for check email message)
+    //     newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
+    // }
+
 }
 const handler = NextAuth(authOptions)
 

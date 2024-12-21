@@ -21,7 +21,7 @@ export const PATH = {
     PLAYLIST: '/playlist',
     PROFILE: '/profile',
     UPLOAD: '/upload',
-
+    SIGNIN: '/auth/signin',
 };
 
 export const PATH_SERVER = (audio: string) => `/api?audio=${audio}`;

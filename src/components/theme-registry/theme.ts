@@ -18,6 +18,8 @@ declare module '@mui/material/styles/createPalette' {
     wavebgf: string;
     wavebgt: string;
     darkstormy: string;
+    signup: string;
+    signupContainer: string;
   }
   interface TypeText {
     white: string; // Thêm thuộc tính navbar
@@ -49,6 +51,8 @@ export const getTheme = (mode: "light" | "dark"): ThemeOptions => ({
       wavebgf: "#3b4762",
       wavebgt: "#a2a9b8",
       darkstormy: "#353f58",
+      signup: '#ffffff',
+      signupContainer: "#cccccc",
     },
 
 

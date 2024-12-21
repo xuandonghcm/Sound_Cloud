@@ -1,6 +1,6 @@
 import { IResponseFromServer } from "@/types/backend";
 import { sendRequest } from "./apiWrapper";
-import { GET_TOKEN_BY_SOCIAL_MEDIA, LOGIN } from "@/constants/service.Constants";
+import { GET_TOKEN_BY_SOCIAL_MEDIA, LOGIN } from "@/constants/PathConstants";
 import { IResponseUSer, LoginRequest, SocialMediaAuthRequest } from "@/types/users";
 
 

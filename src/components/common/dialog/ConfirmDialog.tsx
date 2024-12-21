@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography, Box, Slide, } from '@mui/material';
-import { AlertMessageType, CANCEL, CONFIRM } from '@/constants/globalConstants';
+import { AlertMessageType, CANCEL, CONFIRM } from '@/constants/GlobalConstants';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import InfoIcon from '@mui/icons-material/Info';
 import ErrorIcon from '@mui/icons-material/Error';

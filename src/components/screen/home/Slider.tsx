@@ -8,8 +8,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useTheme } from '@mui/material/styles';
 import Image from "next/image";
-import { BACKEND_IMAGES_URL } from "@/constants/service.Constants";
-import { PATH } from "@/constants/service.Constants";
+import { BACKEND_IMAGES_URL } from "@/constants/PathConstants";
+import { PATH } from "@/constants/PathConstants";
 
 interface IProps {
     data: ITrackTopResponse[]

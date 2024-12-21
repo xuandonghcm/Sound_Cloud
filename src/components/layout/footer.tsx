@@ -5,7 +5,7 @@ import { AppBar, Box, Container, Typography } from '@mui/material';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { useHasMounted } from '@/utils/customHooks';
-import { BACKEND_URL, GET_TRACK_FOOTER_URL } from '@/constants/service.Constants';
+import { BACKEND_URL, GET_TRACK_FOOTER_URL } from '@/constants/PathConstants';
 
 
 
