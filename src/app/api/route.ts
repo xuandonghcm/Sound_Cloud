@@ -26,7 +26,7 @@ export async function GET(requet: NextRequest) {
         return new Response(stream, { headers, status: 200 });
 
     } catch (error) {
-        console.error('Error fetching audio:', error);
+
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
     }
 

@@ -16,7 +16,6 @@ export const LOGIN = '/v1/auth/login';
 //path client
 export const PATH = {
     BLANK: '/',
-    HOME: '/home',
     TRACK: (_id: string, audio: string) => `/track/${_id}?audio=${audio}`,
     LIKE: '/likes',
     PLAYLIST: '/playlist',

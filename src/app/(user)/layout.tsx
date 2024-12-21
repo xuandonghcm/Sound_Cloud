@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <AlertDialogProvider>
               <HeaderAppBar />
               <Container sx={{ marginTop: "20px", paddingBottom: "180px" }}>{children}</Container>
-              <BottomAppBar />8
+              <BottomAppBar />
             </AlertDialogProvider>
           </NextAuthWrapper>
         </ThemeRegistry>

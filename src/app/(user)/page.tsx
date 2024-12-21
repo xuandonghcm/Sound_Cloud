@@ -11,7 +11,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
-  console.log(">>> check session server: ", session)
+
 
   const categoriesChillRequest: IGetTopTracksByCategoriesRequest =
   {
@@ -38,10 +38,10 @@ export default async function HomePage() {
     getTopTracksByCategories(categoriesPartyRequest),
   ]);
 
-  console.error("Errors occurred:");
+
 
   if (chills.error || workouts.error || partys.error) {
-    console.error("Errors occurred:", chills?.error);
+
     return (
       <>
         <div>

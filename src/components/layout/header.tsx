@@ -66,7 +66,7 @@ export default function HeaderAppBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const { data: session } = useSession();
-  console.log(">>> check session server: ", session)
+
   const handleProfileMenuOpen = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
